@@ -23,7 +23,7 @@ module RailsAdmin
           #
           # @see RailsAdmin::AbstractModel.properties
           register_instance_option(:help) do
-            I18n.t(:tag_list_help, :scope => [:admin, :new], :default => 'Use commas to separate tags')
+            I18n.t(:tag_list_help, scope: [:admin, :new], default: 'Use commas to separate tags')
           end
           register_instance_option(:partial) do
             :form_tag_list
@@ -39,8 +39,8 @@ RailsAdmin::Config::Fields.register_factory do |parent, properties, fields|
 
   if defined?(::ActsAsTaggableOn) && model.taggable?
     tag_types = model.tag_types
-    if tag_types.include?(properties[:name])
-      name = "#{properties[:name].to_s.singularize}_list".to_sym
+    if tag_types.include?(properties.name)
+      name = "#{properties.name.to_s.singularize}_list".to_sym
 
       fields << RailsAdmin::Config::Fields::Types::TagList.new(parent, name, properties)
     end
